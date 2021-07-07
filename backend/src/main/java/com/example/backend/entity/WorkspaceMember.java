@@ -21,6 +21,6 @@ public class WorkspaceMember extends BaseEntity {
     private Workspace workspace;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
 }

@@ -26,7 +26,7 @@ public class User extends BaseEntity {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<ChannelChart> channelChartList;
+    private List<ChannelChat> channelChatList;
 
     @OneToMany(mappedBy = "user")
     private List<ChannelMember> channelMembers;
@@ -49,6 +49,6 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "receiver")
     private List<Mention> MentionsFromReceiver;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "owner")
     private List<UserWorkspace> userWorkspaces;
 }

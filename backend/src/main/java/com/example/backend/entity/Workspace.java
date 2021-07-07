@@ -21,6 +21,10 @@ public class Workspace extends BaseEntity {
     @Size(max = 30)
     private String url;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
     @OneToMany(mappedBy = "workspace")
     private List<Channel> channels;
 

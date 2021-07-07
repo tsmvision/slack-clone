@@ -16,6 +16,9 @@ public class Channel extends BaseEntity {
     @Size(max = 30)
     private String name;
 
+    @Column(name= "is_private")
+    private Boolean isPrivate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workspace_id")
     private Workspace workspace;
@@ -28,5 +31,5 @@ public class Channel extends BaseEntity {
     private User user;
 
     @OneToMany(mappedBy = "channel")
-    private List<ChannelChart> channelChartList;
+    private List<ChannelChat> channelChatList;
 }

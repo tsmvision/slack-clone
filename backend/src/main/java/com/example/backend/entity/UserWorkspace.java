@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class UserWorkspace extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private User owner;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workspace_id")

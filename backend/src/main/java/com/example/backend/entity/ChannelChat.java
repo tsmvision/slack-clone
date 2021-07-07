@@ -5,12 +5,12 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "channel_charts")
+@Table(name = "channel_chats")
 @Getter
 @Setter
 // TODO: setup index
 // TODO: setup cascade
-public class ChannelChart extends BaseEntity {
+public class ChannelChat extends BaseEntity {
     @Column(name = "content")
     private String content;
 

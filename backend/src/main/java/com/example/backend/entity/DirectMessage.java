@@ -11,6 +11,10 @@ import javax.persistence.*;
 // TODO: add cascade
 // TODO: add indexes
 public class DirectMessage extends BaseEntity {
+
+    @Column(name = "content")
+    private String content;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workspace_id")
     private Workspace workspace;
