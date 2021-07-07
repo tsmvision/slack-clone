@@ -1,8 +1,8 @@
 package com.example.backend.entity;
 
+import com.example.backend.Category;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +12,11 @@ import javax.persistence.*;
 // TODO: add cascade
 //
 public class Mention extends BaseEntity {
+
+    @Column(name = "category")
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workspace_id")
     private Workspace workspace;
