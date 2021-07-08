@@ -6,7 +6,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
-    generate-ddl: true
+    generate-ddl: false
     properties:
       hibernate:
         format_sql: true
