@@ -2,11 +2,12 @@ package com.example.backend.controller;
 
 import com.example.backend.dto.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/workspaces")
+@RequestMapping(value = "/api/workspaces", produces = MediaType.APPLICATION_JSON_VALUE)
 public class WorkspaceController {
 
     @GetMapping

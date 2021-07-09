@@ -18,18 +18,18 @@ public class Mention extends BaseEntity {
     private Category category;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "workspace_id")
+    @JoinColumn(name = "workspace_id", foreignKey = @ForeignKey(name="fk_mention__workspace"))
     private Workspace workspace;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sender_id")
+    @JoinColumn(name = "sender_id", foreignKey = @ForeignKey(name="fk_mention__sender"))
     private User sender;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "receiver_id")
+    @JoinColumn(name = "receiver_id", foreignKey = @ForeignKey(name="fk_mention__receiver"))
     private User receiver;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "chat_id")
+    @JoinColumn(name = "chat_id", foreignKey = @ForeignKey(name="fk_mention__chat"))
     private ChannelChat chat;
 }

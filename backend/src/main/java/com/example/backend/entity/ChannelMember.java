@@ -11,7 +11,7 @@ import javax.persistence.*;
 // TODO: add cascade
 public class ChannelMember extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "channel_id")
+    @JoinColumn(name = "channel_id", foreignKey = @ForeignKey(name="fk_channel_member__channel"))
     private Channel channel;
 
     @ManyToOne(fetch = FetchType.LAZY)

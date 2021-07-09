@@ -17,10 +17,10 @@ public class WorkspaceMember extends BaseEntity {
     private LocalDate loggedInAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "workspace_id")
+    @JoinColumn(name = "workspace_id", foreignKey = @ForeignKey(name="fk_workspace_member__workspace"))
     private Workspace workspace;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name="fk_workspace_member__user"))
     private User user;
 }

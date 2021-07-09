@@ -16,14 +16,14 @@ public class DirectMessage extends BaseEntity {
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "workspace_id")
+    @JoinColumn(name = "workspace_id", foreignKey = @ForeignKey(name="fk_direct_message__workspace"))
     private Workspace workspace;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sender_id")
+    @JoinColumn(name = "sender_id", foreignKey = @ForeignKey(name="fk_direct_message__sender"))
     private User sender;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "receiver_id")
+    @JoinColumn(name = "receiver_id", foreignKey = @ForeignKey(name="fk_direct_message__receiver"))
     private User receiver;
 }

@@ -20,14 +20,14 @@ public class Channel extends BaseEntity {
     private Boolean isPrivate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "workspace_id")
+    @JoinColumn(name = "workspace_id", foreignKey = @ForeignKey(name="fk_channel__workspace"))
     private Workspace workspace;
 
     @OneToMany(mappedBy="user")
     private List<ChannelMember> channelMembers;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name="fk_channel__user"))
     private User user;
 
     @OneToMany(mappedBy = "channel")

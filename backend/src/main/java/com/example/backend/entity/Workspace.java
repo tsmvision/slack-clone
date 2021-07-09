@@ -2,7 +2,6 @@ package com.example.backend.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -22,7 +21,7 @@ public class Workspace extends BaseEntity {
     private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id")
+    @JoinColumn(name = "owner_id", foreignKey = @ForeignKey(name="fk_workspace__owner"))
     private User owner;
 
     @OneToMany(mappedBy = "workspace")

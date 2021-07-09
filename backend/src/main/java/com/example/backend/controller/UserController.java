@@ -1,15 +1,14 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.LoginRequestDto;
 import com.example.backend.dto.UserDto;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping(value = "/api/users", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
     @GetMapping
     public ResponseEntity<UserDto> getUsers() {
@@ -22,8 +21,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDto> login() {
-        return new ResponseEntity<>(new UserDto(), HttpStatus.OK);
+    public ResponseEntity<LoginRequestDto> login(@RequestBody LoginRequestDto loginRequestDto) {
+        return new ResponseEntity<>(loginRequestDto, HttpStatus.OK);
     }
 
     @PostMapping("/logout")
