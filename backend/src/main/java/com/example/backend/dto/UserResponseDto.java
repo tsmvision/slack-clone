@@ -2,15 +2,12 @@ package com.example.backend.dto;
 
 import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
-
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class UserDto {
-
+public class UserResponseDto {
     private Long id;
     private String email;
     private String nickname;

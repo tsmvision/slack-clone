@@ -22,24 +22,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .anyRequest()
 //                .authenticated()
                ;
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/**").permitAll();
-////        http
-////                .authorizeRequests()
-////                .antMatchers("/", "/home").permitAll()
-////                .anyRequest().authenticated()
-////                .and()
-////                .formLogin()
-////                .loginPage("/login")
-////                .permitAll()
-////                .and()
-////                .logout()
-////                .permitAll();
-//        // allow h2 console
-//        http.authorizeRequests().antMatchers("/h2-console/**").permitAll()
-//                .and().csrf().ignoringAntMatchers("/h2-console/**")
-//                .and().headers().frameOptions().sameOrigin();
+        // allow h2 console
+        http.authorizeRequests().antMatchers("/h2-console/**").permitAll()
+                .and().csrf().ignoringAntMatchers("/h2-console/**")
+                .and().headers().frameOptions().sameOrigin();
     }
 //
 ////    @Bean

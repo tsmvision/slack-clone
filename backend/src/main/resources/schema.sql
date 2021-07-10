@@ -1,7 +1,7 @@
 create table channel_chats
 (
     id         bigserial not null,
-    created_at date not null,
+    created_at date      not null,
     deleted_at date,
     updated_at date,
     content    varchar(255),
@@ -13,7 +13,7 @@ create table channel_chats
 create table channel_members
 (
     id         bigserial not null,
-    created_at date not null,
+    created_at date      not null,
     deleted_at date,
     updated_at date,
     channel_id int8,
@@ -24,7 +24,7 @@ create table channel_members
 create table channels
 (
     id           bigserial not null,
-    created_at   date not null,
+    created_at   date      not null,
     deleted_at   date,
     updated_at   date,
     is_private   boolean,
@@ -37,7 +37,7 @@ create table channels
 create table direct_messages
 (
     id           bigserial not null,
-    created_at   date not null,
+    created_at   date      not null,
     deleted_at   date,
     updated_at   date,
     content      varchar(255),
@@ -50,7 +50,7 @@ create table direct_messages
 create table mentions
 (
     id           bigserial not null,
-    created_at   date not null,
+    created_at   date      not null,
     deleted_at   date,
     updated_at   date,
     category     varchar(255),
@@ -64,7 +64,7 @@ create table mentions
 create table user_workspace
 (
     id           bigserial not null,
-    created_at   date not null,
+    created_at   date      not null,
     deleted_at   date,
     updated_at   date,
     user_id      int8,
@@ -75,7 +75,7 @@ create table user_workspace
 create table users
 (
     id         bigserial not null,
-    created_at date not null,
+    created_at date      not null,
     deleted_at date,
     updated_at date,
     email      varchar(30) unique,
@@ -87,7 +87,7 @@ create table users
 create table workspace_members
 (
     id           bigserial not null,
-    created_at   date not null,
+    created_at   date      not null,
     deleted_at   date,
     updated_at   date,
     loggedin_at  date,
@@ -99,7 +99,7 @@ create table workspace_members
 create table workspaces
 (
     id         bigserial not null,
-    created_at date not null,
+    created_at date      not null,
     deleted_at date,
     updated_at date,
     name       varchar(30) unique,
@@ -108,92 +108,92 @@ create table workspaces
     primary key (id)
 );
 
-    alter table channel_chats
-       add constraint fk_channel_chat__channel
-       foreign key (channel_id)
-       references channels;
+alter table channel_chats
+    add constraint fk_channel_chat__channel
+        foreign key (channel_id)
+            references channels;
 
-    alter table channel_chats
-       add constraint fk_channel_chat__user
-       foreign key (user_id)
-       references users;
+alter table channel_chats
+    add constraint fk_channel_chat__user
+        foreign key (user_id)
+            references users;
 
-    alter table channel_members
-       add constraint fk_channel_member__channel
-       foreign key (channel_id)
-       references channels;
+alter table channel_members
+    add constraint fk_channel_member__channel
+        foreign key (channel_id)
+            references channels;
 
-    alter table channel_members
-       add constraint FKjunpxp98pv6g23t5d3w5hx8ji
-       foreign key (user_id)
-       references users;
+alter table channel_members
+    add constraint FKjunpxp98pv6g23t5d3w5hx8ji
+        foreign key (user_id)
+            references users;
 
-    alter table channels
-       add constraint fk_channel__user
-       foreign key (user_id)
-       references users;
+alter table channels
+    add constraint fk_channel__user
+        foreign key (user_id)
+            references users;
 
-    alter table channels
-       add constraint fk_channel__workspace
-       foreign key (workspace_id)
-       references workspaces;
+alter table channels
+    add constraint fk_channel__workspace
+        foreign key (workspace_id)
+            references workspaces;
 
-    alter table direct_messages
-       add constraint fk_direct_message__receiver
-       foreign key (receiver_id)
-       references users;
+alter table direct_messages
+    add constraint fk_direct_message__receiver
+        foreign key (receiver_id)
+            references users;
 
-    alter table direct_messages
-       add constraint fk_direct_message__sender
-       foreign key (sender_id)
-       references users;
+alter table direct_messages
+    add constraint fk_direct_message__sender
+        foreign key (sender_id)
+            references users;
 
-    alter table direct_messages
-       add constraint fk_direct_message__workspace
-       foreign key (workspace_id)
-       references workspaces;
+alter table direct_messages
+    add constraint fk_direct_message__workspace
+        foreign key (workspace_id)
+            references workspaces;
 
-    alter table mentions
-       add constraint fk_mention__chat
-       foreign key (chat_id)
-       references channel_chats;
+alter table mentions
+    add constraint fk_mention__chat
+        foreign key (chat_id)
+            references channel_chats;
 
-    alter table mentions
-       add constraint fk_mention__receiver
-       foreign key (receiver_id)
-       references users;
+alter table mentions
+    add constraint fk_mention__receiver
+        foreign key (receiver_id)
+            references users;
 
-    alter table mentions
-       add constraint fk_mention__sender
-       foreign key (sender_id)
-       references users;
+alter table mentions
+    add constraint fk_mention__sender
+        foreign key (sender_id)
+            references users;
 
-    alter table mentions
-       add constraint fk_mention__workspace
-       foreign key (workspace_id)
-       references workspaces;
+alter table mentions
+    add constraint fk_mention__workspace
+        foreign key (workspace_id)
+            references workspaces;
 
-    alter table user_workspace
-       add constraint FKqmqq3m642y2uay2hy7sickk72
-       foreign key (user_id)
-       references users;
+alter table user_workspace
+    add constraint FKqmqq3m642y2uay2hy7sickk72
+        foreign key (user_id)
+            references users;
 
-    alter table user_workspace
-       add constraint fk_user_workspace__workspace
-       foreign key (workspace_id)
-       references workspaces;
+alter table user_workspace
+    add constraint fk_user_workspace__workspace
+        foreign key (workspace_id)
+            references workspaces;
 
-    alter table workspace_members
-       add constraint fk_workspace_member__user
-       foreign key (user_id)
-       references users;
+alter table workspace_members
+    add constraint fk_workspace_member__user
+        foreign key (user_id)
+            references users;
 
-    alter table workspace_members
-       add constraint fk_workspace_member__workspace
-       foreign key (workspace_id)
-       references workspaces;
+alter table workspace_members
+    add constraint fk_workspace_member__workspace
+        foreign key (workspace_id)
+            references workspaces;
 
-    alter table workspaces
-       add constraint fk_workspace__owner
-       foreign key (owner_id)
-       references users;
+alter table workspaces
+    add constraint fk_workspace__owner
+        foreign key (owner_id)
+            references users;
