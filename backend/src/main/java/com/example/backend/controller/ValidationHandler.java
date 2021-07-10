@@ -19,7 +19,6 @@ public class ValidationHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
-
         ErrorMessageDto errors = new ErrorMessageDto();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
 
