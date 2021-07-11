@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface WorkspaceRepositoryCustom {
     List<WorkspaceDto> findMyWorkspacesByUserId(Long id);
-
 }

@@ -1,7 +1,6 @@
 package com.example.backend.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import java.util.List;
 @Table(name = "workspaces")
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 public class Workspace extends BaseEntity {
     // TODO: double check unique
@@ -23,10 +21,10 @@ public class Workspace extends BaseEntity {
     @Size(max = 30)
     private String url;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", foreignKey = @ForeignKey(name="fk_workspace__owner"))
-    @Setter(AccessLevel.NONE)
-    private User owner;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "owner_id", foreignKey = @ForeignKey(name="fk_workspace__owner"))
+//    @Setter(AccessLevel.NONE)
+//    private User owner;
 
     @OneToMany(mappedBy = "workspace")
     @Setter(AccessLevel.NONE)
@@ -47,4 +45,5 @@ public class Workspace extends BaseEntity {
     @OneToMany(mappedBy = "workspace")
     @Setter(AccessLevel.NONE)
     private List<Mention> mentions = new ArrayList<>();
+
 }

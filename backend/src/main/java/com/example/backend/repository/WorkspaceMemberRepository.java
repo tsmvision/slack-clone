@@ -1,7 +1,9 @@
 package com.example.backend.repository;
 
-import com.example.backend.entity.Workspace;
+import com.example.backend.entity.WorkspaceMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface WorkspaceMemberRepository extends JpaRepository<Workspace, Long>, WorkspaceRepositoryCustom {
+import java.util.List;
+
+public interface WorkspaceMemberRepository extends JpaRepository<WorkspaceMember, Long>, WorkspaceMemberRepositoryCustom {
 }

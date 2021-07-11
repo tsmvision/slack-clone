@@ -14,7 +14,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 // TODO: add cascade
 // TODO: add indices
 public class User extends BaseEntity {
