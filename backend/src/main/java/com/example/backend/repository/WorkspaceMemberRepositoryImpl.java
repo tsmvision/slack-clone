@@ -1,6 +1,7 @@
 package com.example.backend.repository;
 
 import com.example.backend.dto.WorkspaceMemberResponseDto;
+import com.example.backend.entity.Workspace;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -9,6 +10,7 @@ import static com.example.backend.entity.QWorkspaceMember.workspaceMember;
 import static com.example.backend.entity.QWorkspace.workspace;
 import static com.example.backend.entity.QUser.user;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class WorkspaceMemberRepositoryImpl implements WorkspaceMemberRepositoryCustom {

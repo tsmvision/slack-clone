@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface WorkspaceRepository extends JpaRepository<Workspace, Long>, WorkspaceRepositoryCustom {
     Optional<Workspace> findById(Long id);
+    Optional<Workspace> findByUrl(String url);
     List<Workspace> findAll();
 }

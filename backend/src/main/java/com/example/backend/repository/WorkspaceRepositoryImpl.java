@@ -1,13 +1,16 @@
 package com.example.backend.repository;
 
 import com.example.backend.dto.WorkspaceDto;
+
 import static com.example.backend.entity.QWorkspace.workspace;
 import static com.example.backend.entity.QWorkspaceMember.workspaceMember;
 import static com.example.backend.entity.QUser.user;
+
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -16,7 +19,8 @@ public class WorkspaceRepositoryImpl implements WorkspaceRepositoryCustom {
 
     public List<WorkspaceDto> findMyWorkspacesByUserId(Long id) {
         return queryFactory
-                .select(Projections.constructor(WorkspaceDto.class,
+                .select(Projections.constructor(
+                        WorkspaceDto.class,
                         workspace.id,
                         workspace.name,
                         workspace.url
