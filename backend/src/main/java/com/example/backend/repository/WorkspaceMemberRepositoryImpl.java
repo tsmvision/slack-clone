@@ -56,7 +56,7 @@ public class WorkspaceMemberRepositoryImpl implements WorkspaceMemberRepositoryC
     }
 
     @Override
-    public List<WorkspaceMemberResponseDto> findWorkspaceMemberByUrlAndUserId(String url, Long userId) {
+    public List<WorkspaceMemberResponseDto> findWorkspaceMemberByUrlAndChannelName(String url, String channelName) {
         return queryFactory
                 .from(workspaceMember)
                 .select(
@@ -68,7 +68,7 @@ public class WorkspaceMemberRepositoryImpl implements WorkspaceMemberRepositoryC
                 .join(workspaceMember.user, user)
                 .join(workspaceMember.workspace, workspace)
                 .where(
-                        CustomExpressions.userIdEq(userId),
+                        CustomExpressions.channelNameEq(channelName),
                         CustomExpressions.workspaceUrlEq(url)
                 )
                 .fetch();
