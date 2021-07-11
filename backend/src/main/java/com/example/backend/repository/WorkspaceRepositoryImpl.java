@@ -1,13 +1,11 @@
 package com.example.backend.repository;
 
 import com.example.backend.dto.WorkspaceDto;
-
 import static com.example.backend.entity.QWorkspace.workspace;
 import static com.example.backend.entity.QWorkspaceMember.workspaceMember;
 import static com.example.backend.entity.QUser.user;
 
 import com.querydsl.core.types.Projections;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -29,11 +27,7 @@ public class WorkspaceRepositoryImpl implements WorkspaceRepositoryCustom {
                 .from(workspace)
                 .join(workspace.workspaceMembers, workspaceMember)
                 .join(workspaceMember.user, user)
-                .where(userIdEq(id))
+                .where(CustomExpressions.userIdEq(id))
                 .fetch();
-    }
-
-    private BooleanExpression userIdEq(Long id) {
-        return user.id.eq(id);
     }
 }

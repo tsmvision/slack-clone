@@ -8,6 +8,7 @@ import com.example.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,25 +29,28 @@ public class UserService {
     }
 
     public UserResponseDto loginUser(LoginRequestDto loginRequestDto) throws Exception {
-        Optional<User> foundUser = userRepository.findByEmail(loginRequestDto.getEmail());
+        Optional<User> foundUserOptional = userRepository.findByEmail(loginRequestDto.getEmail());
 
-        validateLoginInfo(foundUser, loginRequestDto);
-        User data = foundUser.get();
+        User foundUser = validateFoundUser(foundUserOptional);
+        validatePassword(foundUser, loginRequestDto);
 
         return UserResponseDto
                 .builder()
-                .id(data.getId())
-                .email(data.getEmail())
-                .nickname(data.getNickname())
+                .id(foundUser.getId())
+                .email(foundUser.getEmail())
+                .nickname(foundUser.getNickname())
                 .build();
     }
 
-    private void validateLoginInfo(Optional<User> foundUser,LoginRequestDto loginRequestDto) throws Exception {
+    private User validateFoundUser(Optional<User> foundUser) throws Exception {
         if (foundUser.isEmpty()) {
             throw new Exception("USER_NOT_FOUND");
         }
+        return foundUser.get();
+    }
 
-        if (!passwordEncoder.matches(loginRequestDto.getPassword(), foundUser.get().getPassword())) {
+    private void validatePassword(User foundUser, LoginRequestDto loginRequestDto) throws Exception {
+        if (!passwordEncoder.matches(loginRequestDto.getPassword(), foundUser.getPassword())) {
             throw new Exception("Password_NOT_MATCHED");
         }
     }
@@ -68,12 +72,15 @@ public class UserService {
     }
 
     private Optional<User> saveUser(RegisterUserRequestDto registerUserRequestDto) {
-        return Optional.of(userRepository.saveAndFlush(
-                User.builder()
-                        .email(registerUserRequestDto.getEmail())
-                        .nickname(registerUserRequestDto.getNickname())
-                        .password(passwordEncoder.encode(registerUserRequestDto.getPassword()))
-                        .build()
+        return Optional.of(
+                userRepository.saveAndFlush(
+                        new User(
+                                registerUserRequestDto.getEmail(),
+                                registerUserRequestDto.getNickname(),
+                                passwordEncoder.encode(
+                                        registerUserRequestDto.getPassword()
+                                )
+                        )
                 )
         );
     }

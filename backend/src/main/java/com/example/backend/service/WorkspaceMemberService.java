@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.dto.WorkspaceMemberResponseDto;
 import com.example.backend.entity.*;
-import com.example.backend.enums.Data;
+import com.example.backend.enums.ChannelName;
 import com.example.backend.exception.GeneralExceptions;
 import com.example.backend.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// TODO: create unit test with @DataJpaTest
 @Service
 @RequiredArgsConstructor
 public class WorkspaceMemberService {
@@ -60,7 +61,7 @@ public class WorkspaceMemberService {
 
     private ChannelMember generateChannelMember(User user) throws Exception {
         ChannelMember channelMember = new ChannelMember();
-        Optional<Channel> channelOptional = channelRepository.findByName(Data.generalChannel);
+        Optional<Channel> channelOptional = channelRepository.findByName(ChannelName.generalChannel);
 
         if (channelOptional.isEmpty()) {
             GeneralExceptions.channelNotFound();

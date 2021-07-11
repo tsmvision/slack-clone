@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class WorkspaceMemberDto {
-    Long id;
+public class DirectMessageResponseDto {
+    private Long id;
 }

@@ -30,6 +30,12 @@ public class User extends BaseEntity {
     @Size(max = 100)
     private String password;
 
+    public User(String email, String nickname, String password) {
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+    }
+
     @OneToMany(mappedBy = "user")
     @Setter(AccessLevel.NONE)
     private List<ChannelChat> channelChatList = new ArrayList<>();

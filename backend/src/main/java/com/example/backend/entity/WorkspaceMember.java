@@ -1,7 +1,6 @@
 package com.example.backend.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -14,7 +13,6 @@ import java.time.LocalDate;
 // TODO: add indeices
 
 public class WorkspaceMember extends BaseEntity {
-
     @Column(name = "loggedin_at")
     private LocalDate loggedInAt;
 
