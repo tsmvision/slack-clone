@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Setter
 // TODO: add cascade
 // TODO: add indeices
+
 public class WorkspaceMember extends BaseEntity {
 
     @Column(name = "loggedin_at")

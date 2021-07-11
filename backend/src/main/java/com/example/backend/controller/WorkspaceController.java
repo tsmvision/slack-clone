@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 public class WorkspaceController {
 
     @GetMapping
-    public ResponseEntity<String> getWorkspaces(@RequestBody WorkspaceDto workspaceDto) {
+    public ResponseEntity<String> getMyWorkspaces(@RequestBody WorkspaceDto workspaceDto) {
         return new ResponseEntity<>("Workspaces!!!", HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<WorkspaceDto> createWorkspaces() {
+    public ResponseEntity<WorkspaceDto> createWorkspaces(@RequestBody WorkspaceDto workspaceDto) {
         return new ResponseEntity<>(new WorkspaceDto(), HttpStatus.OK);
     }
 
@@ -53,7 +53,7 @@ public class WorkspaceController {
         return new ResponseEntity<>(new UserInviteDto(), HttpStatus.OK);
     }
 
-    @GetMapping("/workspaces/{workspace}/users/{id}")
+    @GetMapping("/{workspace}/users/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable String id) {
         return new ResponseEntity<>(new UserDto(), HttpStatus.OK);
     }

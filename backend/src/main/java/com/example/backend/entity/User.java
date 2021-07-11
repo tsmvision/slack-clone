@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,43 +21,49 @@ public class User extends BaseEntity {
 
     @Column(name = "email", length = 30, unique = true)
     @Size(max = 30)
-    @NotBlank(message = "email is mandatory")
     private String email;
 
     @Column(name = "nickname", length = 30)
     @Size(max = 30)
-    @NotBlank(message = "nickname is mandatory")
     private String nickname;
 
     @Column(name = "password", length = 100)
     @Size(max = 100)
-    @NotBlank(message = "password is mandatory")
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<ChannelChat> channelChatList;
+    @Setter(AccessLevel.NONE)
+    private List<ChannelChat> channelChatList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<ChannelMember> channelMembers;
+    @Setter(AccessLevel.NONE)
+    private List<ChannelMember> channelMembers = new ArrayList<>();
 
     @OneToMany(mappedBy = "sender")
-    private List<DirectMessage> directMessageFromSenders;
+    @Setter(AccessLevel.NONE)
+    private List<DirectMessage> directMessageFromSenders = new ArrayList<>();
 
     @OneToMany(mappedBy = "receiver")
-    private List<DirectMessage> directMessageFromReceivers;
+    @Setter(AccessLevel.NONE)
+    private List<DirectMessage> directMessageFromReceivers = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<WorkspaceMember> workspaceMembers;
+    @Setter(AccessLevel.NONE)
+    private List<WorkspaceMember> workspaceMembers = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<Channel> channels;
+    @Setter(AccessLevel.NONE)
+    private List<Channel> channels = new ArrayList<>();
 
     @OneToMany(mappedBy = "sender")
-    private List<Mention> MentionsFromSender;
+    @Setter(AccessLevel.NONE)
+    private List<Mention> MentionsFromSender = new ArrayList<>();
 
     @OneToMany(mappedBy = "receiver")
-    private List<Mention> MentionsFromReceiver;
+    @Setter(AccessLevel.NONE)
+    private List<Mention> MentionsFromReceiver = new ArrayList<>();
 
     @OneToMany(mappedBy = "owner")
-    private List<UserWorkspace> userWorkspaces;
+    @Setter(AccessLevel.NONE)
+    private List<UserWorkspace> userWorkspaces = new ArrayList<>();
 }

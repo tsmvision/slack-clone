@@ -1,4 +1,4 @@
-package com.example.backend.controller;
+package com.example.backend.exception;
 
 import com.example.backend.dto.ErrorMessageDto;
 import org.springframework.http.HttpHeaders;
@@ -17,8 +17,12 @@ import java.time.Instant;
 public class ValidationHandler extends ResponseEntityExceptionHandler {
 
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException ex,
+            HttpHeaders headers,
+            HttpStatus status,
+            WebRequest request
+    ) {
         ErrorMessageDto errors = new ErrorMessageDto();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
 

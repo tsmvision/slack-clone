@@ -1,15 +1,18 @@
 package com.example.backend.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "workspaces")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
 public class Workspace extends BaseEntity {
     // TODO: double check unique
     @Column(name = "name", length = 30, unique = true)
@@ -22,17 +25,26 @@ public class Workspace extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", foreignKey = @ForeignKey(name="fk_workspace__owner"))
+    @Setter(AccessLevel.NONE)
     private User owner;
 
     @OneToMany(mappedBy = "workspace")
-    private List<Channel> channels;
+    @Setter(AccessLevel.NONE)
+    private List<Channel> channels = new ArrayList<>();
 
     @OneToMany(mappedBy = "workspace")
-    private List<DirectMessage> directMessageList;
+    @Setter(AccessLevel.NONE)
+    private List<DirectMessage> directMessageList = new ArrayList<>();
 
     @OneToMany(mappedBy = "workspace")
-    private List<WorkspaceMember> workspaceMembers;
+    @Setter(AccessLevel.NONE)
+    private List<WorkspaceMember> workspaceMembers = new ArrayList<>();
 
     @OneToMany(mappedBy = "workspace")
-    private List<UserWorkspace> userWorkspaces;
+    @Setter(AccessLevel.NONE)
+    private List<UserWorkspace> userWorkspaces = new ArrayList<>();
+
+    @OneToMany(mappedBy = "workspace")
+    @Setter(AccessLevel.NONE)
+    private List<Mention> mentions = new ArrayList<>();
 }

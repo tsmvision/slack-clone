@@ -1,9 +1,11 @@
 package com.example.backend.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,15 +23,29 @@ public class Channel extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workspace_id", foreignKey = @ForeignKey(name="fk_channel__workspace"))
+    @Setter(AccessLevel.NONE)
     private Workspace workspace;
 
     @OneToMany(mappedBy="user")
-    private List<ChannelMember> channelMembers;
+    @Setter(AccessLevel.NONE)
+    private List<ChannelMember> channelMembers = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name="fk_channel__user"))
+    @Setter(AccessLevel.NONE)
     private User user;
 
     @OneToMany(mappedBy = "channel")
-    private List<ChannelChat> channelChatList;
+    @Setter(AccessLevel.NONE)
+    private List<ChannelChat> channelChatList = new ArrayList<>();
+
+    public void saveWorkspace(Workspace workspace) {
+        this.workspace = workspace;
+        this.workspace.getChannels().add(this);
+    }
+
+    public void saveUser(User user) {
+        this.user = user;
+        this.user.getChannels().add(this);
+    }
 }
