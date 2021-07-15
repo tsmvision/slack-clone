@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 // TODO: add cascade
 // TODO: add indices
 public class User extends BaseEntity {

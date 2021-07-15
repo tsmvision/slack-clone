@@ -23,6 +23,7 @@ public class UserService {
         return userRepository.findAll().stream().map(
                 user -> UserResponseDto.builder()
                         .id(user.getId())
+                        .email(user.getEmail())
                         .nickname(user.getNickname())
                         .build()
         ).collect(Collectors.toList());

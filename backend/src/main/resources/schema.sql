@@ -1,3 +1,13 @@
+DROP TABLE IF EXISTS channel_chats CASCADE ;
+DROP TABLE IF EXISTS channel_members CASCADE ;
+DROP TABLE IF EXISTS channels CASCADE ;
+DROP TABLE IF EXISTS direct_messages CASCADE ;
+DROP TABLE IF EXISTS mentions CASCADE ;
+DROP TABLE IF EXISTS user_workspace CASCADE ;
+DROP TABLE IF EXISTS users CASCADE ;
+DROP TABLE IF EXISTS workspace_members CASCADE ;
+DROP TABLE IF EXISTS workspaces CASCADE;
+
 create table channel_chats
 (
     id         bigserial not null,
